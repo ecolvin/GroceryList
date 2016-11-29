@@ -3,6 +3,11 @@ var myList = [];
 function addItem()
 {
   var input = document.getElementById("newItem").value;
+  addItemParam(input);
+}
+
+function addItemParam(input)
+{
   if(myList.indexOf(input) == -1)
   {
     myList.push(input);
@@ -35,6 +40,38 @@ function removeParentListItem()
   console.log(myList);
   var grandma = mom.parentNode;
   grandma.removeChild(mom);
+}
+
+function saveList()
+{
+  var listString = myList.toString();
+  setCookie("list", listString, 7);
+}
+
+function openList()
+{
+  var list = getCookie("list");
+  while(list.indexOf(",") != -1)
+  {
+    var item = list.substring(0, list.indexOf(","));
+    list = list.substring(list.indexOf(",") + 1, list.length);
+    addItemParam(item);
+  }
+  if(list != "")
+  {
+    addItemParam(list);
+  }
+}
+
+function clearList()
+{
+  var list = document.getElementById("listDisplay");
+  var length = document.getElementById("listDisplay").childNodes.length;
+  for(var i = length - 1; i >= 0; i--)
+  {
+    list.removeChild(list.childNodes[i]);
+  }
+  myList = [];
 }
 
 //courtesy of w3schools, from: http://www.w3schools.com/js/js_cookies.asp

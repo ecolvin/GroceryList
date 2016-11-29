@@ -7,7 +7,7 @@
     <title>Groceries</title>
     <script type="text/javascript" src="groceries.js"></script>
   </head>
-  <body lang="en-US">
+  <body lang="en-US" onload="openList();">
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-4">
@@ -27,6 +27,20 @@
         <div class="col-sm-4">
           <ul id="listDisplay">
           </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-1">
+          <button type="button" class="btn btn-default" onclick="saveList();">
+            <span class="glyphicon glyphicon-save-file" aria-hidden="true"></span>
+            Save List
+          </button>
+        </div>
+        <div class="col-sm-1">
+          <button type="button" class="btn btn-default" onclick="clearList();">
+            <span class="glyphicon glyphicon-open-file" aria-hidden="true"></span>
+            Clear List
+          </button>
         </div>
       </div>
     </div>
