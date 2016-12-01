@@ -1,12 +1,13 @@
 var myList = [];
+window.onload = loadCookieList;
 
 function addItem()
 {
   var input = document.getElementById("newItem").value;
-  addItemParam(input);
+  displayItem(input);
 }
 
-function addItemParam(input)
+function displayItem(input)
 {
   if(myList.indexOf(input) == -1)
   {
@@ -48,18 +49,14 @@ function saveList()
   setCookie("list", listString, 7);
 }
 
-function openList()
+function loadCookieList()
 {
   var list = getCookie("list");
-  while(list.indexOf(",") != -1)
+  var arrayCookie = [];
+  arrayCookie = list.split(",");
+  for(var i = 0; i < arrayCookie.length; i++)
   {
-    var item = list.substring(0, list.indexOf(","));
-    list = list.substring(list.indexOf(",") + 1, list.length);
-    addItemParam(item);
-  }
-  if(list != "")
-  {
-    addItemParam(list);
+    displayItem(arrayCookie[i]);
   }
 }
 
